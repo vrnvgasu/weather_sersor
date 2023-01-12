@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.5.xsd">
+
+<changeSet id="1" author="Dmitrii">
+    <createTable tableName="sensors" remarks="Датчики">
+      <column name="id" type="bigserial">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="name" type="varchar(100)" remarks="Название">
+        <constraints nullable="false" unique="true" />
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2" author="Dmitrii">
+    <createTable tableName="measurements" remarks="Измерения">
+      <column name="id" type="bigserial">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="value" type="decimal" remarks="Температура">
+        <constraints nullable="false" />
+      </column>
+      <column name="raining" type="boolean" remarks="Идет ли дождь">
+        <constraints nullable="false" />
+      </column>
+      <column name="time" type="timestamp" remarks="Время измерения" defaultValueComputed="current_timestamp">
+        <constraints nullable="false" />
+      </column>
+      <column name="sensor_id" type="bigint" remarks="ID сенсора">
+        <constraints nullable="false" foreignKeyName="sensors_id_fk" references="sensors(id)" />
+      </column>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>
