@@ -4,10 +4,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,12 +18,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "sensors")
-public class Sensor {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", nullable = false)
-  private Long id;
+@SequenceGenerator(name = "app_sequence_generator", sequenceName = "sensors_id_seq", allocationSize = 1)
+public class Sensor extends BaseModel {
 
   @Column(name = "name", nullable = false, unique = true)
   private String name;
