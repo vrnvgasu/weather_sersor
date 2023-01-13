@@ -18,12 +18,21 @@ public class GlobalExceptionHandler {
 	private static final String INVALID_REQUEST_PARAMETERS_MESSAGE = "Invalid request parameters: ";
 
 
+	@ExceptionHandler(value = {
+			ValidationException.class
+	})
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ResponseEntity<ErrorResponseDTO> handleInvalidRequestParamsException(RuntimeException e) {
+		ErrorResponseDTO responseDTO = new ErrorResponseDTO(e.getMessage());
+		return ResponseEntity.badRequest().body(responseDTO);
+	}
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<ErrorResponseDTO> handleInvalidRequestParamsException(MethodArgumentNotValidException e) {
 		ErrorResponseDTO responseDTO = new ErrorResponseDTO(
-			INVALID_REQUEST_PARAMETERS_MESSAGE +
-					Objects.requireNonNull(e.getFieldError()).getDefaultMessage()
+				INVALID_REQUEST_PARAMETERS_MESSAGE +
+						Objects.requireNonNull(e.getFieldError()).getDefaultMessage()
 		);
 		return ResponseEntity.badRequest().body(responseDTO);
 	}

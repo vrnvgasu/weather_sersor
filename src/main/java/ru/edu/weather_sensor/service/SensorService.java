@@ -24,4 +24,8 @@ public class SensorService {
     return repository.save(modelMapper.map(dto, Sensor.class));
   }
 
+  public boolean existsByName(String name) {
+    return repository.existsByName(name);
+  }
+
 }

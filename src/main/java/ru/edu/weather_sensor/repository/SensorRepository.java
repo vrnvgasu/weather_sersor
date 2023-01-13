@@ -7,4 +7,6 @@ import ru.edu.weather_sensor.model.Sensor;
 @Repository
 public interface SensorRepository extends JpaRepository<Sensor, Long> {
 
+  boolean existsByName(String name);
+
 }
