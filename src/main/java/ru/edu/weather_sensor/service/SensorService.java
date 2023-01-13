@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.edu.weather_sensor.dto.SensorRegistrationRequestDTO;
+import ru.edu.weather_sensor.exception.NotFoundException;
 import ru.edu.weather_sensor.model.Sensor;
 import ru.edu.weather_sensor.repository.SensorRepository;
 
@@ -26,6 +27,11 @@ public class SensorService {
 
   public boolean existsByName(String name) {
     return repository.existsByName(name);
+  }
+
+  public Sensor findByName(String name) {
+    return repository.findByName(name)
+        .orElseThrow(() -> new NotFoundException("Can not find sensor with name " + name));
   }
 
 }

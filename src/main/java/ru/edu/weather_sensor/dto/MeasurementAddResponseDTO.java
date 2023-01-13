@@ -1,6 +1,5 @@
 package ru.edu.weather_sensor.dto;
 
-import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,9 +9,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SensorRegistrationRequestDTO implements RequestDTO {
+public class MeasurementAddResponseDTO {
 
-  @NotEmpty(message = "'name' must not be empty string")
-  private String name;
+  private String value;
+
+  private Boolean raining;
+
+  private SensorDTO sensor;
 
 }
