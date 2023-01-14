@@ -25,6 +25,6 @@ public class MeasurementAddRequestDTO implements RequestDTO {
 
   @Valid
   @NotNull(message = "'sensor' must not be null")
-  private SensorDTO sensor;
+  private SensorRequestDTO sensor;
 
 }

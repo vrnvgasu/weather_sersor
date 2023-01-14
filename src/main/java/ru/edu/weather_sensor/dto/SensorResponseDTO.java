@@ -9,12 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MeasurementAddResponseDTO {
+public class SensorResponseDTO {
 
-  private String value;
+  private Long id;
 
-  private Boolean raining;
-
-  private SensorRequestDTO sensor;
+  private String name;
 
 }

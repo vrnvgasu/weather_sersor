@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import ru.edu.weather_sensor.dto.MeasurementAddRequestDTO;
-import ru.edu.weather_sensor.dto.SensorDTO;
+import ru.edu.weather_sensor.dto.SensorRequestDTO;
 import ru.edu.weather_sensor.dto.SensorRegistrationRequestDTO;
 import ru.edu.weather_sensor.service.SensorService;
 
@@ -27,7 +27,7 @@ public class MeasurementAddValidator implements Validator {
   @Override
   public void validate(Object target, Errors errors) {
     MeasurementAddRequestDTO requestDTO = (MeasurementAddRequestDTO) target;
-    SensorDTO sensorDTO = requestDTO.getSensor();
+    SensorRequestDTO sensorDTO = requestDTO.getSensor();
 
     if (!sensorService.existsByName(sensorDTO.getName())) {
       errors.rejectValue("sensor", "", "sensor is not exist");

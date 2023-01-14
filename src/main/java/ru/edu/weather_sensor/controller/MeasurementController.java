@@ -1,17 +1,20 @@
 package ru.edu.weather_sensor.controller;
 
+import java.util.List;
 import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.edu.weather_sensor.dto.MeasurementAddRequestDTO;
 import ru.edu.weather_sensor.dto.MeasurementAddResponseDTO;
+import ru.edu.weather_sensor.dto.MeasurementSensorResponseDTO;
 import ru.edu.weather_sensor.model.Measurement;
 import ru.edu.weather_sensor.service.MeasurementService;
 import ru.edu.weather_sensor.util.MeasurementAddValidator;
@@ -32,6 +35,11 @@ public class MeasurementController extends BaseController {
     this.service = service;
     this.modelMapper = modelMapper;
     this.addValidator = addValidator;
+  }
+
+  @GetMapping
+  public ResponseEntity<List<MeasurementSensorResponseDTO>> getList() {
+    return new ResponseEntity<>(service.getDTOList(), HttpStatus.OK);
   }
 
   @PostMapping("/add")

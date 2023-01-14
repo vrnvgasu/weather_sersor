@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SensorDTO {
+public class SensorRequestDTO {
 
   @NotEmpty(message = "'name' must not be empty string")
   private String name;
