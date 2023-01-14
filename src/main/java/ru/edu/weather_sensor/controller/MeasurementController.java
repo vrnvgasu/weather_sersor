@@ -42,6 +42,11 @@ public class MeasurementController extends BaseController {
     return new ResponseEntity<>(service.getDTOList(), HttpStatus.OK);
   }
 
+  @GetMapping("/rainyDaysCount")
+  public ResponseEntity<Integer> getRainyCount() {
+    return new ResponseEntity<>(service.getRainyCount(), HttpStatus.OK);
+  }
+
   @PostMapping("/add")
   public ResponseEntity<MeasurementAddResponseDTO> add(
       @RequestBody @Valid MeasurementAddRequestDTO requestDTO, BindingResult bindingResult) {
